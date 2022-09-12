@@ -1,13 +1,35 @@
-# 고양이 짤방 생성기
+## 리액트 기초 정리
 
-https://milooy.github.io/cat-jjal-maker/
+### 컴포넌트
 
-> 고양이 짤방을 생성하는 리액트 앱입니다
+    - 웹사이트를 보면 반복되는 요소 즉, 페이지네이션(1,2,3..), 버튼, 링크, 카드(이미지, 내용, 링크) 이런것들이 컴포넌트 이다.
+    - 때에 따라서 컨텐츠만 넘기면 일관적인 UI 를 보여 줄수 있다.
+    - 팀 개발시 다른사람이 개발한 컴포너트를 가져다 사용하면 시간 절약 뿐아니라, 웹사이트 전제적으로 일관된 UI 를 가져 갈 수 있다.
+    - 카드모양 참고 사이트 : [서핏] https://www.surfit.io/
+    - 컨포넌트 참고 사이트 : ant.design 여기에 만들어 놓은 컴포넌트를 가져다 사용하면 된다.
+    - 컨포넌트는 React 에서 함수를 사용해서 만들수 있다.
 
-![328234-0-resize](https://user-images.githubusercontent.com/3839771/149098995-0b89419a-58fb-494a-ade3-27aae5342553.gif)
+Link: [서핏][서핏링크], [ant.design][ant링크]
 
-## 연관 리액트 강의
+[서핏링크]: https://www.surfit.io/
 
-인프런의 [만들면서 배우는 리액트: 기초](https://www.inflearn.com/course/%EB%A7%8C%EB%93%A4%EB%A9%B4%EC%84%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%EB%A6%AC%EC%95%A1%ED%8A%B8-%EA%B8%B0%EC%B4%88) 강의에서 만드는 토이 프로젝트입니다.
+[ant링크]: https://ant.design/
 
-![KakaoTalk_Photo_2022-01-12-18-15-08](https://user-images.githubusercontent.com/3839771/149098759-6a7b4a16-5c7f-431e-8fb5-cc750fd527a2.jpeg)
+```
+  ## html에 컨포넌트 코딩 예시
+  function Card(titel, desc) { // html 을 반환
+    return (
+            <div>
+              <h2>{title}</h2>
+              {desc}
+            </div>
+    );
+  }
+
+  Card('리액트 짱', '리액트 입니다'); //이렇게 호출 할 수있다.
+  Card('리액트 싫어요', '리액트 싫어요 입니다');
+
+  <Card title="리액트 짱2" desc="리액트 입니다2"/>  // 리액트가 좋은게 이렇게 호출 가능하다.
+  <Card title="리액트 싫어요2" desc="리액트 싫어요 입니다2"/>
+```
+
