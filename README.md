@@ -108,3 +108,63 @@ Link: [서핏][서핏링크], [ant.design][ant링크]
     )
 ```
 
+### 스타일링
+
+    - 리액트 에서는 class 대신 className 사용
+        - 예) <ul className="favorites">
+    - 리액트 에서는 스타일링을 inline 스타일로 한다. 객체로 표현한다.
+        - 예)  <img src={props.img} style={{width: '150px', border: '1px solid red'}}/>
+    - 최근 리액트 스타일링하는 트렌드
+        - emotion 라이브러리 사용 : 아래 링크 참조
+            - style prop 를 넘기는 것이 아니가. css prop 을 넘김.
+            - styled 컴포넌트 방식 으로 사용가능.
+        - Tailwind css 라이브러리 사용.
+            - prop 를 넘기는 게 아니라 class 이름을 미리 정의해 놓고 사용한다.
+
+```
+    ## Emotion 사용 예시
+        1. css prop 넘기기
+        import { css } from '@emotion/react'
+    
+        const color = 'white'
+        
+        render(
+          <div
+            css={css`
+              padding: 32px;
+              background-color: hotpink;
+              font-size: 24px;
+              border-radius: 4px;
+              &:hover {
+                color: ${color};
+              }
+            `}
+          >
+            Hover to change color.
+          </div>
+        )
+        
+        2. Styled 컴포넌트 방식
+            import styled from '@emotion/styled'
+
+            const Button = styled.button`
+              padding: 32px;
+              background-color: hotpink;
+              font-size: 24px;
+              border-radius: 4px;
+              color: black;
+              font-weight: bold;
+              &:hover {
+                color: white;
+              }
+            `
+            
+            render(<Button>This my button component.</Button>)
+```
+
+Link: [Emotion][Emotion링크], [Tailwind CSS][Tailwind CSS링크]
+
+[Emotion링크]: https://emotion.sh/docs/introduction
+
+[Tailwind CSS링크]: https://tailwindcss.com/
+

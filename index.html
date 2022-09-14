@@ -25,9 +25,9 @@
         gap: 15px;
     }
 
-    .favorites img {
+    /*.favorites img {
         width: 150px;
-    }
+    }*/
 </style>
 <body>
 <div id="app"></div>
@@ -44,7 +44,7 @@
         // console.log(props);
         return (
             <li>
-                <img src={props.img} alt={props.alt} width={props.width}/>
+                <img src={props.img} style={{width: '150px'}}/>
             </li>
         );
     }
@@ -61,7 +61,7 @@
     const MainCard = ({img}) => {
         return (
             <div className="main-card">
-                <CatItem img={img} alt="고양이" width="400"/>
+                <CatItem img={img} alt="고양이"/>
                 <button>🤍</button>
             </div>
         )
@@ -95,7 +95,6 @@
     )
     const 여기다가그려 = document.querySelector("#app");
     ReactDOM.render(app, 여기다가그려);
-
 </script>
 </body>
 </html>
