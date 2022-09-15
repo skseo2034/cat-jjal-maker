@@ -168,3 +168,40 @@ Link: [Emotion][Emotion링크], [Tailwind CSS][Tailwind CSS링크]
 
 [Tailwind CSS링크]: https://tailwindcss.com/
 
+### 이벤트 다루기
+
+    - 이벤트 핸들러의 이름은 handelxxxx 로 네이밍 하는게 리액트 관례 임.
+
+```
+    ## 이벤트 예제
+    const MainCard = ({img}) => {
+        function handelHeartClick() { // onClick 이벤트 핸들러
+            console.log("하트 눌렀음");
+        }
+
+        function handleHeartMouseOver() { // onMouseOver 이벤트 핸들러
+            console.log("하트 스쳐지나감");
+        }
+
+        return (
+            <div className="main-card">
+                <CatItem img={img} alt="고양이"/>
+                <button onClick={handelHeartClick} onMouseOver={handleHeartMouseOver}> 🤍</button> // onClick, onMouseOver 이벤트
+            </div>
+        )
+    }
+    
+    const Form = () => {
+        function handleFormSumit(event) { // onSubmit 이벤트 핸들러, 핸들러의 첫번째 파라메터 인자는 event 이다.
+            event.preventDefault(); // 폼은 전송되면 브라우져에서 기본적으로 리프레시 함. 이것을 방지하기 위함 코드
+            console.log("폼 전송됨");
+        }
+
+        return (
+            <form onSubmit={handleFormSumit}> // onSubmit 이벤트
+                <input type="text" name="name" placeholder="영어 대사를 입력해주세요"/>
+                <button type="submit">생성</button>
+            </form>
+        );
+    }
+```

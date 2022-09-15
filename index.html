@@ -59,10 +59,18 @@
     }
 
     const MainCard = ({img}) => {
+        function handelHeartClick() {
+            console.log("하트 눌렀음");
+        }
+
+        function handleHeartMouseOver() {
+            console.log("하트 스쳐지나감");
+        }
+
         return (
             <div className="main-card">
                 <CatItem img={img} alt="고양이"/>
-                <button>🤍</button>
+                <button onClick={handelHeartClick} onMouseOver={handleHeartMouseOver}> 🤍</button>
             </div>
         )
     }
@@ -75,8 +83,13 @@
     }
 
     const Form = () => {
+        function handleFormSumit(event) {
+            event.preventDefault();
+            console.log("폼 전송됨");
+        }
+
         return (
-            <form>
+            <form onSubmit={handleFormSumit}>
                 <input type="text" name="name" placeholder="영어 대사를 입력해주세요"/>
                 <button type="submit">생성</button>
             </form>
