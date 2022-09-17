@@ -205,3 +205,114 @@ Link: [Emotion][Emotion링크], [Tailwind CSS][Tailwind CSS링크]
         );
     }
 ```
+
+### 상태 - useState로 상태 만들기, 상태 끌어올리기
+
+    - 화면에 값을 마음대로 바꾸고 싶을때 상태라는 것을 사용한다. 
+    - 그 상태는 리액트의 useState 로 만들고, 또 바꿀 수 있다.
+
+```
+    ## useState 예제
+    // const counterState = React.useState(1); // useState 의 두번째 인자를 통해 첫번째 인자를 원하는 값을 넘길 수 있다.
+    // const counter = counterState[0]; // useState 의 첫번째 인자
+    // const setCounter = counterState[1]; // useState 의 두번째 인자
+    const [counter, setCounter] = React.useState(1); // 위와 동일한 문법임.
+
+    console.log("카운터", counter);
+
+    function handleFormSumit(event) {
+        event.preventDefault();
+        console.log("폼 전송됨");
+       // setCounter(100); // 두번째 인자 값 세팅
+        setCounter(counter + 1);
+    }
+```
+
+### 상태 끌어 올리기
+
+    - 자식 컴포넌트에서 사용하던 useState 를 다른 곳에서 함께 사용하고 싶을때
+        - 부모 컴포넌트에서 그 상태를 끌어 올리고, 그 상태를 자식 컴포넌트에 prop로 넘긴다.
+
+```
+## 상태 끌어올리기 예제
+    1. 부모를 컴포넌르로 만든다.
+        const app = (
+                <div>
+                    <Title>1번째 고양이 가라사대</Title>
+                    <Title>2번째 고양이 가라사대</Title>
+                    <Form/>
+                    <MainCard img="https://cataas.com/cat/60b73094e04e18001194a309/says/react"/>
+                    <Favorites/>
+                </div>
+            )
+            const 여기다가그려 = document.querySelector("#app");
+            ReactDOM.render(app, 여기다가그려);
+        =>
+        const App = () => {
+        return (
+            <div>
+                <Title>{counter}번째 고양이 가라사대</Title>
+                <Form/>
+                <MainCard img="https://cataas.com/cat/60b73094e04e18001194a309/says/react"/>
+                <Favorites/>
+            </div>
+        );
+    }
+
+    const 여기다가그려 = document.querySelector("#app");
+    ReactDOM.render(<App/>, 여기다가그려);
+    
+    2. 자식에 있는 상태 끌어 올리기.
+        const Form = () => {
+        const [counter, setCounter] = React.useState(1);
+
+        console.log("카운터", counter);
+
+        function handleFormSumit(event) {
+            event.preventDefault();
+            console.log("폼 전송됨");
+            setCounter(counter + 1);
+        }
+
+        return (
+            <form onSubmit={handleFormSumit}>
+                <input type="text" name="name" placeholder="영어 대사를 입력해주세요"/>
+                <button type="submit">생성</button>
+            </form>
+        );
+    }
+    =>
+    const Form = ({handleFormSumit}) => { // 부모에게서 받은 prop 받음
+        // useState ~ function handleFormSumit(event) 까지 부모로 옮김.
+        return (
+            <form onSubmit={handleFormSumit}>
+                <input type="text" name="name" placeholder="영어 대사를 입력해주세요"/>
+                <button type="submit">생성</button>
+            </form>
+        );
+    }
+
+
+    const App = () => {
+        // 자식 상태를 끌어 올려 옮김. useState ~ function handleFormSumit(event) 까지
+        const [counter, setCounter] = React.useState(1);
+        console.log("카운터", counter);
+
+        function handleFormSumit(event) {
+            event.preventDefault();
+            console.log("폼 전송됨");
+            setCounter(counter + 1);
+        }
+
+        return (
+            <div>
+                <Title>{counter}번째 고양이 가라사대</Title>
+                <Form handleFormSumit={handleFormSumit}/> // 자식에게 prop 로 넘김
+                <MainCard img="https://cataas.com/cat/60b73094e04e18001194a309/says/react"/>
+                <Favorites/>
+            </div>
+        );
+    } 
+
+```
+
