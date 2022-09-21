@@ -316,3 +316,25 @@ Link: [Emotion][Emotion링크], [Tailwind CSS][Tailwind CSS링크]
 
 ```
 
+### 참고사항.
+
+    - React 에서 이벤트 핸들러 함수 이름을 지을때 약속된 컨벤션이 있다.
+        - handle 라고 시작을 하고, 그 함수를 prop 로  넘긴다고 했을때는 on 이라는 접두어를 붙인다.
+
+```
+## 핸들러 이름 붙이기 컨벤션 참조
+        function handelHeartClick() {
+            setFavorites([...favorites, CAT3]);
+        }
+
+        return (
+            <div>
+                <Title>{counter}번째 고양이 가라사대</Title>
+                <Form handleFormSumit={handleFormSumit}/>
+                <MainCard img={mainCat} onHeartClick={handelHeartClick}/> // MainCard의 prop 이름은 onHearClick
+                <Favorites favorites={favorites}/>
+            </div>
+        );
+```
+
+

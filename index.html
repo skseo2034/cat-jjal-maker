@@ -41,7 +41,6 @@
     console.log("야옹");
 
     function CatItem(props) {
-        // console.log(props);
         return (
             <li>
                 <img src={props.img} style={{width: '150px'}}/>
@@ -60,13 +59,13 @@
         );
     }
 
-    const MainCard = ({img, handelHeartClick}) => {
+    const MainCard = ({img, onHeartClick}) => {
 
 
         return (
             <div className="main-card">
                 <CatItem img={img} alt="고양이"/>
-                <button onClick={handelHeartClick}> 🤍</button>
+                <button onClick={onHeartClick}> 🤍</button>
             </div>
         )
     }
@@ -78,18 +77,19 @@
         );
     }
 
-    const Form = () => {
+    const Form = ({updateMainCat}) => {
         const includesHangul = (text) => /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/i.test(text);
         const [value, setValue] = React.useState('');
         const [errorMessage, setErrorMessager] = React.useState('');
 
         function handleInputChange(e) {
             const userValue = e.target.value;
+            setErrorMessager('');
             if (includesHangul(userValue)) {
                 setErrorMessager('한글은 입력할 수 없습니다.');
-            } else {
-                setErrorMessager('');
+                return;
             }
+            updateMainCat();
             setValue(e.target.value.toUpperCase());
         }
 
@@ -123,23 +123,20 @@
         const [mainCat, setMainCat] = React.useState(CAT1);//cataas.com/cat/60b73094e04e18001194a309/says/react");
         const [favorites, setFavorites] = React.useState([CAT1, CAT2]);
 
-        function handleFormSumit(event) {
-            event.preventDefault();
-            console.log("폼 전송됨");
-            setCounter(counter + 1);
+        function updateMainCat(event) {
             setMainCat(CAT2);
+            setCounter(counter + 1);
         }
 
         function handelHeartClick() {
-            console.log("하트 눌렀음");
             setFavorites([...favorites, CAT3]);
         }
 
         return (
             <div>
                 <Title>{counter}번째 고양이 가라사대</Title>
-                <Form handleFormSumit={handleFormSumit}/>
-                <MainCard img={mainCat} handelHeartClick={handelHeartClick}/>
+                <Form updateMainCat={updateMainCat}/>
+                <MainCard img={mainCat} onHeartClick={handelHeartClick}/>
                 <Favorites favorites={favorites}/>
             </div>
         );
