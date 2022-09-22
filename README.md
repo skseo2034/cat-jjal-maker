@@ -337,4 +337,9 @@ Link: [Emotion][Emotion링크], [Tailwind CSS][Tailwind CSS링크]
         );
 ```
 
+### 참고 사이트
+
+- [로컬 스토리지 MDN 문서](https://developer.mozilla.org/ko/docs/Web/API/Window/localStorage)
+
+
 
