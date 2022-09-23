@@ -316,6 +316,58 @@ Link: [Emotion][Emotion링크], [Tailwind CSS][Tailwind CSS링크]
 
 ```
 
+### 개념 정리 1
+
+    - JSX
+        - Javascript + XML
+        - Javascript에 HTML 태그를 끼얹은 문법
+            - HTML 태그 안에선 중괄호({}) 를 사용해서 JS를 쓸 수 있다.
+                - const count = 1;
+                - const title = <h1>{count}번째 고양이</h1>
+                - 위 title변수에 담은 h1 태그는 리액트 엘리먼트라고 부른다.
+    - 리액트 코드 브라우저에 그리기
+        - 빈 HTML 공간에 React 때려박기
+            - HTML
+                - <div id="app"></div>
+            - React
+                - const target = document.querySelector('#app') // html 을 찾고
+                - const myButton = <button>버튼</button> // 리액트 엘리먼트 만듬
+                - ReactDOM.render(myButton, target) // 리액트를 사용해서 myButton 을 target 에 그린다.
+    - 컴포넌트
+        - 여기저기 재사용 가능한 UI 코드 조각
+        - 속성을 넘겨서 내부 UI에 디데일 정보를 바꿀수 있다.
+        - 아래 멍멍, 야옹 카드uI 를 만들어야 한다고 가정 했을때.
+            - 카드 컴포넌트를 만든다.
+                - <Card emoji={dog} title="멍멍" /> // emoji 속성은 dog, title 속성은 멍멍 으로 넘김.
+                - <Card emoji={cat} title="야옹" /> // emoji 속성은 cat, title 속성은 야옹 으로 넘김.
+            -  함수를 통해 컴포넌트를 만든다.
+                - function Card(prps) {
+                    return (
+                        <div>
+                            {props.emoji}
+                            <h2>{props.title}</h2>
+                        </div>)
+                  }
+
+![img.png](img/img.png)
+
+    - 스타일링
+        - 리액트에 css 끼얹기 (2가지 방법 있음)
+            1. CSS 클래스: className
+                - <div className="safety">안전</div>
+            2. 인라인 스타일링: style={{스타일속성:스타일값}}
+                - <div style={{color:'bule'}}>안전</div> // * 주목:  'bule'를 string 로 넘김/
+    - 이벤트
+        - 사용자 이벤트(클릭, 스크롤 등) 다루기
+        - 일반 자바스크립트 이벤트 목록과 동일하지만 중간을 대문자로 쓰면 된다.
+            - onclick -> onClick
+            - onsubmit -> onSubmit
+        - 예제
+            - function handleClick(event) {
+                console.log("클릭 했습니다");
+             }
+            <button onClick={handleClick}>제출</button> // button 컴포넌트에 onClick 이벤트를 handleClick 함수를 넘겨 제어한다. 
+
 ### 참고사항.
 
     - React 에서 이벤트 핸들러 함수 이름을 지을때 약속된 컨벤션이 있다.
@@ -340,6 +392,8 @@ Link: [Emotion][Emotion링크], [Tailwind CSS][Tailwind CSS링크]
 ### 참고 사이트
 
 - [로컬 스토리지 MDN 문서](https://developer.mozilla.org/ko/docs/Web/API/Window/localStorage)
+- [git 다운로드 페이지](https://git-scm.com/downloads)
+- [팀 개발을 위한 Git, GitHub 입문(강의)]()
 
 
 
