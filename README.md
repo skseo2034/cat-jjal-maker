@@ -366,7 +366,46 @@ Link: [Emotion][Emotion링크], [Tailwind CSS][Tailwind CSS링크]
             - function handleClick(event) {
                 console.log("클릭 했습니다");
              }
-            <button onClick={handleClick}>제출</button> // button 컴포넌트에 onClick 이벤트를 handleClick 함수를 넘겨 제어한다. 
+            <button onClick={handleClick}>제출</button> // button 컴포넌트에 onClick 이벤트를 handleClick 함수를 넘겨 제어한다.
+    - 상태
+        - 컴포넌트 안에서 자유롭게 변경할 값이 필요할 때 사용
+        - useState 함수로 상태를 추가 할 수 있다.
+        - const[상태명, 상태변경 함수명] = React.useState(초기값)
+        - 컴포넌트 안에서 만들 수 있다.
+        - 코드예시
+            const[counter, setCounter] = React.useState(1)
+            function 카운터증가() {
+                setCounter(counter + 1);
+            }
+            return <button onClick={카운터증가}카운터는 {counter}</button>
+    - 리스트
+        - 배열로 반복되는 UI 그리기
+        - 웹사이트를 만들때 정말 많이 쓴다.
+        - 배열에서 map을 돌면서 리액트 UI 를 반환한다.
+        - 코드예시
+            const favorites = ["이미지1", "이미지2", "이미지3"]
+            <ul>
+                {favorites.map(image => <img src={image}></img>)}
+            <ul>
+    - 폼
+        - 사용자 입력 다루기
+        - 사용자 입력값을 직접 다루기 우해 value를 상태로 관리한다.
+        - 코드예시
+            const[value, setValue] = React.useState('초기값')
+            function onValueChange(e) {
+                setValue(e.target.value);
+            }
+            <form onSubmit={handleSubmit}>
+                <input value={value} onChange={onValueChange} />
+                <button type="submit">제출</button>
+            </form>
+    - 로컬스토리지 (리액터 문법 x, 브라우저 기능 o)
+        - 브라우저에 데이터 저장하기
+        - 간단한 데이터 저장이 필요할 땐 localStorage를 쓰세요.
+            * webkit관련 브라우저(애플 > 사파리 등)에서는 7일까지 저장가능
+        - 코드예시
+            - localStorage.getItem('이름', 'aaa')
+            - localStorage.setItem('이름') // aaa
 
 ### 참고사항.
 
