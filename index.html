@@ -37,6 +37,7 @@
 <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/babel">
     const jsonLocalStorage = {
         setItem: (key, value) => {
@@ -45,6 +46,29 @@
         getItem: (key) => {
             return JSON.parse(localStorage.getItem(key));
         },
+    };
+
+    const fetchCat = async (text) => {
+        const OPEN_API_DOMAIN = "https://cataas.com";
+        const response = await fetch(`${OPEN_API_DOMAIN}/cat/says/${text}?json=true`);
+        const responseJson = await response.json();
+        return `${OPEN_API_DOMAIN}/${responseJson.url}`;
+    };
+
+    const fetchCat2 = async (text) => {
+        const OPEN_API_DOMAIN = "https://cataas.com";
+        try {
+            const responseJson2 = await axios({
+                method: 'get',
+                url: `${OPEN_API_DOMAIN}/cat/says/${text}?json=true`,
+                // responseType: 'json'
+            });
+
+            return `${OPEN_API_DOMAIN}/${responseJson2.data.url}`; // responseJson2.data.url
+        } catch (error) {
+            console.log(error.message, error.errorCode);
+        }
+
     };
 
     function CatItem(props) {
@@ -108,7 +132,7 @@
                 setErrorMessager('');
             }
 
-            updateMainCat();
+            updateMainCat(value);
         }
 
         return (
@@ -136,8 +160,11 @@
             jsonLocalStorage.getItem("favorites") || []
         );
 
-        function updateMainCat(event) {
-            setMainCat(CAT2);
+        async function updateMainCat(inpuText) {
+            const newCat = await fetchCat(inpuText);
+            //const newCat2 = await fetchCat2('test2');
+            //setMainCat(newCat2);
+            setMainCat(newCat);
             const nextCounter = counter + 1;
             setCounter(nextCounter);
             jsonLocalStorage.setItem("counter", nextCounter);

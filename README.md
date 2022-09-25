@@ -433,6 +433,8 @@ Link: [Emotion][Emotion링크], [Tailwind CSS][Tailwind CSS링크]
 - [로컬 스토리지 MDN 문서](https://developer.mozilla.org/ko/docs/Web/API/Window/localStorage)
 - [git 다운로드 페이지](https://git-scm.com/downloads)
 - [팀 개발을 위한 Git, GitHub 입문(강의)]()
+- [Public API 리포지토리 주소](https://github.com/public-apis/public-apis)
+- [Using Fetch MDN](https://developer.mozilla.org/ko/docs/Web/API/Fetch_API/Using_Fetch)
 
 
 
