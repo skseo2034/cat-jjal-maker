@@ -407,6 +407,35 @@ Link: [Emotion][Emotion링크], [Tailwind CSS][Tailwind CSS링크]
             - localStorage.getItem('이름', 'aaa')
             - localStorage.setItem('이름') // aaa
 
+### useEffect
+
+    - 우리가 원하는 시점에 해당 함수를 부르고 싶을때 사용.
+    - 예시코드
+        const App = () => {
+        const CAT1 = "https://cataas.com/cat/60b73094e04e18001194a309/says/react";
+        
+        const [counter, setCounter] = React.useState(
+            jsonLocalStorage.getItem("counter")
+        );
+        console.log('헬로');
+        => App 가 갱신 될때마다 헬로가 찍힌다.
+        
+        이것을 
+        React.useEffect(() => {
+            console.log('헬로');
+        });
+        이렇게 수정하면 그대로 App가 갱신 될때 마다 찍힌다.
+        이것을
+         React.useEffect(() => {
+            console.log('헬로');
+        }, []);
+        두번째 인자를 사용해서 이 함수가 불리순간을 제한 할 수 있다.
+        [] 은 최초 한번만 컴포넌트가 나타날때만 불린다.
+        [counter] 는 counter 변수가 변경 될때 마다 불린다.
+    - 리액트 컴포넌트 안에 있는 코드는 기본적으로 UI 가 새로 update 될때 마다 계속 불린다.
+    - 다만, 계속 불리는 것을 어떤 상태가 바뀔때 마다 불려라고 제한하고 싶을때는 useEffect 의 두번째 인자로 배열을 넘기고, 그곳에 원하는 상태를 넘기면 된다.
+    - 상태상관없이 맨처음 한번만 하고 싶다 그러면 빈 배열을 넘기면 된다.
+
 ### 참고사항.
 
     - React 에서 이벤트 핸들러 함수 이름을 지을때 약속된 컨벤션이 있다.

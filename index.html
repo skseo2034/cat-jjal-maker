@@ -160,6 +160,16 @@
             jsonLocalStorage.getItem("favorites") || []
         );
 
+        async function setInitialCat() {
+            const newCat = await fetchCat('First cat');
+            setMainCat(newCat);
+        }
+
+        React.useEffect(() => {
+            setInitialCat();
+        }, []);
+
+
         async function updateMainCat(inpuText) {
             const newCat = await fetchCat(inpuText);
             //const newCat2 = await fetchCat2('test2');
