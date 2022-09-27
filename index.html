@@ -80,6 +80,10 @@
     }
 
     function Favorites({favorites}) {
+        if (favorites.length == 0) {
+            return <div>사진 위 하트를 눌러 고양이 사진을 저장해봐요!</div>
+        }
+
         return (
             <ul className="favorites">
                 {favorites.map((cat) =>
@@ -90,13 +94,12 @@
         );
     }
 
-    const MainCard = ({img, onHeartClick}) => {
-
-
+    const MainCard = ({img, onHeartClick, alreadyFavorite}) => {
+        const heartIcon = alreadyFavorite ? "💖" : "🤍";
         return (
             <div className="main-card">
                 <CatItem img={img} alt="고양이"/>
-                <button onClick={onHeartClick}> 🤍</button>
+                <button onClick={onHeartClick}>{heartIcon}</button>
             </div>
         )
     }
@@ -160,6 +163,8 @@
             jsonLocalStorage.getItem("favorites") || []
         );
 
+        const alreadyFavorite = favorites.includes(mainCat);
+
         async function setInitialCat() {
             const newCat = await fetchCat('First cat');
             setMainCat(newCat);
@@ -186,11 +191,13 @@
             jsonLocalStorage.setItem("favorites", nextFavorites);
         }
 
+        const counterTitle = !counter ? '' : counter + '번째 ';
+
         return (
             <div>
-                <Title>{counter}번째 고양이 가라사대</Title>
+                <Title>{counterTitle} 고양이 가라사대</Title>
                 <Form updateMainCat={updateMainCat}/>
-                <MainCard img={mainCat} onHeartClick={handelHeartClick}/>
+                <MainCard img={mainCat} onHeartClick={handelHeartClick} alreadyFavorite={alreadyFavorite}/>
                 <Favorites favorites={favorites}/>
             </div>
         );
