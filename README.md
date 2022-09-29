@@ -436,6 +436,23 @@ Link: [Emotion][Emotion링크], [Tailwind CSS][Tailwind CSS링크]
     - 다만, 계속 불리는 것을 어떤 상태가 바뀔때 마다 불려라고 제한하고 싶을때는 useEffect 의 두번째 인자로 배열을 넘기고, 그곳에 원하는 상태를 넘기면 된다.
     - 상태상관없이 맨처음 한번만 하고 싶다 그러면 빈 배열을 넘기면 된다.
 
+### create-react-app
+
+    - 리액트 초기 개발에 필요한 모든 것을 자동으로 해준다.
+    - 이것이 해 주는 것은
+        - 간단한 앱 껍데기를 만들어 준다. 여기서 추가, 추가를 하면서 개발을 할 수 있다.
+        - 리액트 라이브러리 셋업을 해 준다. 개발시 개발용 / 배포시 프로덕션용 을 셋업 해 준다.
+        - 웹팩을 셋업 해 준다.
+            - 라이브 서버
+            - 저장할때 마다 바벨이 JSX -> JS 로 변경 해 준다.
+        - 테스트 셋업 : 테스트 코드들을 쉽게 짤수 있게 해 준다.
+        - 빌드 셋업 : 개발이 완료 되었을때 실서버로 올리기 위해 하는 것들.
+            - JS로 변환, 코드 용량 최소화, 프로덕션 라이브러리 설정 등.
+    - 실습
+        1. npx create-react-app cat-jjal-maker-cra
+        2. cd cat-jjal-maker-cra
+        3. npm start
+
 ### 참고사항.
 
     - React 에서 이벤트 핸들러 함수 이름을 지을때 약속된 컨벤션이 있다.
@@ -464,6 +481,7 @@ Link: [Emotion][Emotion링크], [Tailwind CSS][Tailwind CSS링크]
 - [팀 개발을 위한 Git, GitHub 입문(강의)]()
 - [Public API 리포지토리 주소](https://github.com/public-apis/public-apis)
 - [Using Fetch MDN](https://developer.mozilla.org/ko/docs/Web/API/Fetch_API/Using_Fetch)
+- [create-react-app 만들기](https://ko.reactjs.org/docs/create-a-new-react-app.html)
 
 
 
